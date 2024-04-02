@@ -20,6 +20,9 @@ import EmployeeRegisterHandler from './controllers/employee/EmployeeRegisterHand
 import UpdateBlood from './controllers/bloodbank/UpdateStockHandler.js'
 import UpdateHealthHandler from './controllers/bloodbank/UpdateHealthHandler.js';
 import HandleRequestHandler from './controllers/bloodbank/HandleRequestHandler.js';
+import HospitalRegisterHandler from './controllers/bloodbank/HospitalRegisterHandler.js';
+import FeedbackHandler from "./controllers/bloodbank/FeedbackHandler.js"
+
 
 //dashboard
 import DashboardHandler from './controllers/dashboard/DashboardHandler.js';
@@ -61,6 +64,8 @@ HandleRequestHandler(app, db);
 DashboardHandler(app, db);
 UpdateBlood(app, db);
 SearchHandler(app, db);
+FeedbackHandler(app,db);
+HospitalRegisterHandler(app,db);
 
 //listening the port
 app.listen(3001, (err) => {

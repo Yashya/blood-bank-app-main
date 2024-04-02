@@ -14,6 +14,9 @@ import UpdateHealth from "./components/bloodbank/UpdateHealth";
 import Donate from "./components/layout/Donate";
 import Search from "./components/bloodbank/Search";
 import HandleRequest from "./components/bloodbank/HandleRequest";
+import Feedback from "./components/bloodbank/Feedback";
+import HospitalRegister from "./components/bloodbank/HospitalRegister";
+
 //import Request from "./components/bloodbank/Request";
 
 //
@@ -28,7 +31,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/home" element={<Dashboard />} />
-        <Route exact path="/donate" element={<Donate />} />
+        <Route exact path="/donate/" element={<Donate />} />
         <Route exact path="/login/usr" element={<UserLogin />} />
         <Route exact path="/login/emp" element={<EmployeeLogin />} />
         <Route exact path="/reg/usr" element={<UserRegister />} />
@@ -40,6 +43,8 @@ function App() {
         <Route exact path="/home/search/blood" element={<Search />} />
         <Route exact path="/request" element={<RequestClass />} />
         <Route exact path="/login/emp/hr" element={<HandleRequest />} />
+        <Route exact path="/feedback" element={<Feedback />} />
+        <Route exact path="/reg/hospital" element={<HospitalRegister />} />
         {/* <Route exact path="/login/usr/dash/req" element={Request}/> */}
       </Routes>
     </div>
