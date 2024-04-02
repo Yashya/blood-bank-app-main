@@ -1,0 +1,38 @@
+.hospital-register {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.hospital-register h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hospital-register form {
+    display: flex;
+    flex-direction: column;
+}
+
+.hospital-register form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.hospital-register form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.hospital-register form button:hover {
+    background-color: #0056b3;
+}
