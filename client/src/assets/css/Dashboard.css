@@ -1,39 +1,28 @@
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  padding-top: 50px;
-  align-items: center;
+  padding: 20px;
 }
 
 .dashboard h1 {
-  font-family: monospace;
-  font-size: 55px;
-  color: rgb(165, 59, 59);
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.blood-table th {
-  font-size: 30px;
-  font-family: monospace;
-  padding-left: 1em;
-  padding-right: 1em;
-  color: rgb(51, 17, 11);
-}
-.blood-table td {
-  font-size: 20px;
-  font-family: monospace;
-  border: 2px solid black;
-  text-align: center;
-}
-.blood-table td:hover {
-  font-size: 20px;
-  font-family: monospace;
-  border: 2px solid rgb(165, 59, 59);
-  text-align: center;
-  color: rgb(102, 35, 170);
+.donation-centers-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.dashboard img{
-  width: 70%;
-  height: 150px;
-  margin-top: 1em;
+.donation-centers-table th,
+.donation-centers-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.donation-centers-table th {
+  background-color: #f2f2f2;
+}
+
+.donation-centers-table tr:nth-child(even) {
+  background-color: #f9f9f9;
 }

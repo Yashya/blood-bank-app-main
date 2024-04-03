@@ -1,19 +1,25 @@
 import React from "react";
 
-//css
+// CSS
 import "../../assets/css/EmpDashboard.css";
 
 const EmpDashBoard = () => {
   return (
     <div className="emp-dashboard">
-      <a href="/login/emp/uh">
-        <button>UPDATE HEALTH</button>
+      <a href="/view/blood-stock">
+        <button>View Blood Stock</button>
       </a>
-      <a href="/login/emp/ub">
-        <button>UPDATE BLOOD STOCK</button>
+      <a href="/view/requests">
+        <button>View Requests</button>
       </a>
-      <a href="/login/emp/hr">
-        <button>HANDLE REQUEST</button>
+      <a href="/view/audit">
+        <button>View Audit</button>
+      </a>
+      <a href="/view/feedback">
+        <button>View Feedback</button>
+      </a>
+      <a href="/view/payments">
+        <button>View Payments</button>
       </a>
     </div>
   );

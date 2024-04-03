@@ -1,28 +1,37 @@
-import bodyParser from "body-parser";
-var urlencodedParser = bodyParser.urlencoded({ extended: false }); //middileware
-
-//module export
 const EmployeeLoginHandler = (app, db) => {
   app.post("/login/emp", (req, res) => {
-    //variables
-    const userName = req.body.empUserName;
-    const password = req.body.empPassword;
+    const username = req.body.username;
+    const password = req.body.password;
 
-    //query
-   const sqlSelect = "SELECT * FROM emp_login WHERE userName= ? AND password=?";
+    const sqlSelectCredentials = "SELECT id FROM credentials WHERE username = ? AND password = ?";
+    const sqlSelectUser = "SELECT * FROM users WHERE user_id = ? AND role = 'employee'";
 
-    //
-    db.query(sqlSelect, [userName, password], (err, result) => {
+    db.query(sqlSelectCredentials, [username, password], (err, credentialsResult) => {
       if (err) {
         res.send({ err: err });
         console.log("**ERROR**");
+        return;
       }
-      /////
-      if (result.length > 0) {
-        res.send(result);
-        console.log("**RESULT SENT TO FRONT END**");
+
+      if (credentialsResult.length > 0) {
+        const userId = credentialsResult[0].id;
+        db.query(sqlSelectUser, [userId], (err, userResult) => {
+          if (err) {
+            res.send({ err: err });
+            console.log("**ERROR**");
+            return;
+          }
+
+          if (userResult.length > 0) {
+            res.send({ message: "Login successful!" });
+            console.log("**LOGIN SUCCESSFUL**");
+          } else {
+            res.send({ message: "Not authorized!" });
+            console.log("**NOT AUTHORIZED**");
+          }
+        });
       } else {
-        res.send({ message: "wrong username/password combination!" });
+        res.send({ message: "Wrong username/password combination!" });
         console.log("**INVALID COMBINATION**");
       }
     });

@@ -1,53 +1,52 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Footer from "./Footer";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Footer from './Footer';
 
-//css
-import "../../assets/css/Dashboard.css";
-
-//background image
-//import bfImg from '../../assets/img/bg.png'
+// CSS
+import '../../assets/css/Dashboard.css';
 
 const Dashboard = () => {
-  //array of blood unit availbility
-  const [bloodTable, setbloodTable] = useState([]);
+    // Array of donation centers
+    const [donationCenters, setDonationCenters] = useState([]);
 
-  //useEffect call
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/home")
-      .then(function (response) {
-        //console.log(response);
-        setbloodTable(response.data)
-      });
-  }, []);
+    // useEffect call
+    useEffect(() => {
+        axios.get('http://localhost:3001/home')
+            .then(function (response) {
+                setDonationCenters(response.data);
+            });
+    }, []);
 
-  return (
-    <div className="dashboard">
-      <h1>BLOOD STOCK</h1>
+    return (
+        <div className='dashboard'>
+            <h1>Donation Centers</h1>
 
-      <table className="blood-table">
-        <thead>
-          <tr>
-            <th>BLOOD GROUP</th>
-            <th>UNIT</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bloodTable.length > 0 && bloodTable.map((val) => {
-            return (
-              <tr key={val.b_id}>
-                <td>{val.blood_group}</td>
-                <td>{val.unit}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      {/* <img src={bfImg} alt="bg"/>*/}
-      <Footer />
-    </div>
-  );
+            <table className='donation-centers-table'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {donationCenters.length > 0 && donationCenters.map((center) => {
+                        return (
+                            <tr key={center.center_id}>
+                                <td>{center.name}</td>
+                                <td>{center.contact_number}</td>
+                                <td>{center.email}</td>
+                                <td>{center.address}</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+
+            <Footer />
+        </div>
+    );
 };
 
 export default Dashboard;

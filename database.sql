@@ -20,7 +20,7 @@ CREATE TABLE users (
 CREATE TABLE hospitals (
     hospital_id INT PRIMARY KEY,
     name VARCHAR(20),
-    contact_number INT,
+    contact_number BIGINT,
     email VARCHAR(20),
     address VARCHAR(20),
     FOREIGN KEY (hospital_id) REFERENCES credentials(id)
@@ -62,7 +62,7 @@ CREATE TABLE blood_samples (
 CREATE TABLE donation_centers (
     center_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(20) UNIQUE,
-    contact_number INT,
+    contact_number BIGINT,
     email VARCHAR(20),
     address VARCHAR(20)
 );

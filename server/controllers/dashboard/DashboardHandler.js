@@ -1,14 +1,15 @@
-
 const DashboardHandler = (app, db) => {
-  app.get("/home", (req, res) => {
-    //query
-    const sqlSelect = "SELECT * from blood_stocks;";
+  app.get('/home', (req, res) => {
+      const sqlSelect = 'SELECT * FROM donation_centers;';
 
-    //db search
-    db.query(sqlSelect, (err, result) => {
-      res.send(result);
-      //console.log("blood from server", result);
-    });
+      db.query(sqlSelect, (err, result) => {
+          if (err) {
+              console.log('Error fetching donation centers:', err);
+              res.send([]);
+              return;
+          }
+          res.send(result);
+      });
   });
 };
 

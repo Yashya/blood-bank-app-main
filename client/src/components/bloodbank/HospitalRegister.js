@@ -8,7 +8,9 @@ const HospitalRegister = () => {
         name: '',
         contact_number: '',
         email: '',
-        address: ''
+        address: '',
+        username: '', 
+        password: ''  
     });
 
     const handleChange = (e) => {
@@ -30,7 +32,7 @@ const HospitalRegister = () => {
                     <input
                         key={key}
                         name={key}
-                        type='text'
+                        type={key === 'password' ? 'password' : 'text'}
                         placeholder={key.replace('_', ' ')}
                         value={hospitalData[key]}
                         onChange={handleChange}
