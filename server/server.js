@@ -10,23 +10,18 @@ import cors from 'cors'
 //user function handlers
 import UserLoginHandler from "./controllers/user/userLoginHandler.js";
 import UserRegisterHandler from './controllers/user/UserRegisterHandler.js';
-import RequestClassHandler from './controllers/bloodbank/RequestClassHandler.js';
 
 
 
 //employee function handlers
 import EmployeeLoginHandler from './controllers/employee/EmployeeLoginHandler.js';
 import EmployeeRegisterHandler from './controllers/employee/EmployeeRegisterHandler.js';
-import UpdateBlood from './controllers/bloodbank/UpdateStockHandler.js'
-import UpdateHealthHandler from './controllers/bloodbank/UpdateHealthHandler.js';
-import HandleRequestHandler from './controllers/bloodbank/HandleRequestHandler.js';
 import HospitalRegisterHandler from './controllers/bloodbank/HospitalRegisterHandler.js';
 import FeedbackHandler from "./controllers/bloodbank/FeedbackHandler.js"
 
 
 //dashboard
 import DashboardHandler from './controllers/dashboard/DashboardHandler.js';
-import SearchHandler from './controllers/bloodbank/SearchHandler.js';
 
 //create the app
 var app = express();
@@ -52,18 +47,13 @@ db.connect(function (err) {
 //user functionalities
 UserRegisterHandler(app, db);
 UserLoginHandler(app, db);
-RequestClassHandler(app, db);
 
 //employee functionalities
 EmployeeRegisterHandler(app, db);
 EmployeeLoginHandler(app, db);
-UpdateHealthHandler(app, db);
-HandleRequestHandler(app, db);
 
 //bloodbank functionalities
 DashboardHandler(app, db);
-UpdateBlood(app, db);
-SearchHandler(app, db);
 FeedbackHandler(app,db);
 HospitalRegisterHandler(app,db);
 
