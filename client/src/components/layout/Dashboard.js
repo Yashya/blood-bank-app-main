@@ -6,10 +6,8 @@ import Footer from './Footer';
 import '../../assets/css/Dashboard.css';
 
 const Dashboard = () => {
-    // Array of donation centers
     const [donationCenters, setDonationCenters] = useState([]);
-
-    // useEffect call
+  
     useEffect(() => {
         axios.get('http://localhost:3001/home')
             .then(function (response) {

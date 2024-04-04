@@ -1,6 +1,5 @@
 const FeedbackHandler = (app, db) => {
     app.post('/feedback', (req, res) => {
-        // Variables
         const { userId, feedback } = req.body;
 
         // Insert into feedback table

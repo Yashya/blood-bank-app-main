@@ -3,36 +3,23 @@ const EmployeeLoginHandler = (app, db) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    const sqlSelectCredentials = "SELECT id FROM credentials WHERE username = ? AND password = ?";
-    const sqlSelectUser = "SELECT * FROM users WHERE user_id = ? AND role = 'employee'";
+    const sqlLoginQuery = `
+      SELECT u.user_id
+      FROM credentials c
+      JOIN users u ON c.id = u.user_id
+      WHERE c.username = ? AND c.password = ? AND u.role = 'employee';
+    `;
 
-    db.query(sqlSelectCredentials, [username, password], (err, credentialsResult) => {
+    db.query(sqlLoginQuery, [username, password], (err, result) => {
       if (err) {
-        res.send({ err: err });
-        console.log("**ERROR**");
+        res.send({ message: "Error: " + err });
         return;
       }
 
-      if (credentialsResult.length > 0) {
-        const userId = credentialsResult[0].id;
-        db.query(sqlSelectUser, [userId], (err, userResult) => {
-          if (err) {
-            res.send({ err: err });
-            console.log("**ERROR**");
-            return;
-          }
-
-          if (userResult.length > 0) {
-            res.send({ message: "Login successful!" });
-            console.log("**LOGIN SUCCESSFUL**");
-          } else {
-            res.send({ message: "Not authorized!" });
-            console.log("**NOT AUTHORIZED**");
-          }
-        });
+      if (result.length > 0) {
+        res.send({ message: "Login successful!" });
       } else {
-        res.send({ message: "Wrong username/password combination!" });
-        console.log("**INVALID COMBINATION**");
+        res.send({ message: "Invalid credentials or not authorized!" });
       }
     });
   });

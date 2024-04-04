@@ -26,7 +26,6 @@ const HospitalRegister = () => {
             } else {
                 alert("Hospital Registration Successful!");
                 setErrorMessage("");
-                // Redirect to login page or dashboard
             }
         });
     };

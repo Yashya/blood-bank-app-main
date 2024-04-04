@@ -2,7 +2,7 @@ const HospitalRegisterHandler = (app, db) => {
     app.post('/reg/hospital', (req, res) => {
         const { name, contact_number, email, address, username, password } = req.body;
 
-        // Check if email or contact_number already exists
+        // Check if email or contact_number exists
         const sqlCheckEmail = "SELECT * FROM hospitals WHERE email = ?";
         const sqlCheckContactNumber = "SELECT * FROM hospitals WHERE contact_number = ?";
 
@@ -26,9 +26,7 @@ const HospitalRegisterHandler = (app, db) => {
                     return;
                 }
 
-                // Insert into credentials table
                 const sqlInsertCredentials = 'INSERT INTO credentials (username, password) VALUES (?, ?)';
-                // Insert into hospitals table
                 const sqlInsertHospitals = 'INSERT INTO hospitals (hospital_id, name, contact_number, email, address) VALUES (LAST_INSERT_ID(), ?, ?, ?, ?)';
 
                 db.query(sqlInsertCredentials, [username, password], (err, result) => {

@@ -2,7 +2,7 @@ const EmployeeRegisterHandler = (app, db) => {
   app.post("/reg/emp", (req, res) => {
       const { empName, empMail, empPhone, empAddress, username, password } = req.body;
 
-      // Check if username, email, or contact number already exists
+      // Check if username, email, or contact number exists
       const sqlCheckUsername = "SELECT * FROM credentials WHERE username = ?";
       const sqlCheckEmail = "SELECT * FROM users WHERE email = ?";
       const sqlCheckContactNumber = "SELECT * FROM users WHERE contact_number = ?";
