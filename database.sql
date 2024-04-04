@@ -14,7 +14,7 @@ CREATE TABLE users (
     gender VARCHAR(10),
     blood_group VARCHAR(10),
     contact_number BIGINT,
-    FOREIGN KEY (user_id) REFERENCES credentials(id)
+    FOREIGN KEY (user_id) REFERENCES credentials(id) 
 );
 
 CREATE TABLE hospitals (
@@ -23,7 +23,7 @@ CREATE TABLE hospitals (
     contact_number BIGINT,
     email VARCHAR(20),
     address VARCHAR(20),
-    FOREIGN KEY (hospital_id) REFERENCES credentials(id)
+    FOREIGN KEY (hospital_id) REFERENCES credentials(id) 
 );
 
 CREATE TABLE request_blood (
@@ -85,3 +85,32 @@ CREATE TABLE audit_log (
     FOREIGN KEY (request_id) REFERENCES request_blood(request_id),
     FOREIGN KEY (center_id) REFERENCES donation_centers(center_id)
 );
+
+ALTER TABLE users
+ADD CONSTRAINT unique_email
+UNIQUE (email);
+
+ALTER TABLE users
+ADD CONSTRAINT unique_contact_number
+UNIQUE (contact_number);
+
+ALTER TABLE credentials
+ADD CONSTRAINT unique_username
+UNIQUE (username);
+
+ALTER TABLE hospitals
+ADD CONSTRAINT unique_hospital_email
+UNIQUE (email);
+
+ALTER TABLE hospitals
+ADD CONSTRAINT unique_hospital_contact_number
+UNIQUE (contact_number);
+
+ALTER TABLE blood_samples
+ADD COLUMN centre_id INT;
+
+ALTER TABLE blood_samples
+ADD CONSTRAINT fk_centre_id
+FOREIGN KEY (centre_id) REFERENCES donation_centres(centre_id);
+
+

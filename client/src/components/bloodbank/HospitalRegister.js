@@ -12,6 +12,7 @@ const HospitalRegister = () => {
         username: '', 
         password: ''  
     });
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleChange = (e) => {
         setHospitalData({ ...hospitalData, [e.target.name]: e.target.value });
@@ -20,7 +21,13 @@ const HospitalRegister = () => {
     const submitHospitalRegister = () => {
         const regUrl = 'http://localhost:3001/reg/hospital';
         Axios.post(regUrl, hospitalData).then((response) => {
-            alert(response.data.message);
+            if (response.data.message) {
+                setErrorMessage(response.data.message);
+            } else {
+                alert("Hospital Registration Successful!");
+                setErrorMessage("");
+                // Redirect to login page or dashboard
+            }
         });
     };
 
@@ -40,6 +47,7 @@ const HospitalRegister = () => {
                     />
                 ))}
                 <button type='button' onClick={submitHospitalRegister}>REGISTER</button>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
             </form>
         </div>
     );

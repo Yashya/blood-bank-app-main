@@ -9,14 +9,15 @@ const UserRegister = () => {
         name: "",
         email: "",
         address: "",
-        date_of_birth_YYYY_MM_DD: "",
-        role: "user", // Assuming default role is "user"
+        date_of_birth: "",
+        role: "user", 
         gender: "",
         blood_group: "",
         contact_number: "",
         username: "",
         password: ""
     });
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,7 +26,13 @@ const UserRegister = () => {
     const submitUserRegister = () => {
         const regUrl = "http://localhost:3001/reg/usr";
         Axios.post(regUrl, formData).then((response) => {
-            alert(response.data.message);
+            if (response.data.message) {
+                setErrorMessage(response.data.message);
+            } else {
+                alert("User Registration Successful!");
+                setErrorMessage("");
+                
+            }
         });
     };
 
@@ -37,14 +44,26 @@ const UserRegister = () => {
                     <input
                         key={key}
                         name={key}
-                        type="text"
-                        placeholder={key.replace("_", " ")}
+                        type={key === "password" ? "password" : "text"}
+                        placeholder={key.replace("_", " ").toUpperCase()}
                         value={formData[key]}
                         onChange={handleChange}
                         required={key !== "role"}
                     />
                 ))}
+                <select name="blood_group" value={formData.blood_group} onChange={handleChange} required>
+                    <option value="">Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
                 <button type="button" onClick={submitUserRegister}>REGISTER</button>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
             </form>
         </div>
     );
