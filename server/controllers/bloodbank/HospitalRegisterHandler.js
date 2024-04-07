@@ -2,44 +2,73 @@ const HospitalRegisterHandler = (app, db) => {
     app.post('/reg/hospital', (req, res) => {
         const { name, contact_number, email, address, username, password } = req.body;
 
-        // Check if email or contact_number exists
-        const sqlCheckEmail = "SELECT * FROM hospitals WHERE email = ?";
-        const sqlCheckContactNumber = "SELECT * FROM hospitals WHERE contact_number = ?";
-
-        db.query(sqlCheckEmail, [email], (err, result) => {
+        // Start a transaction
+        db.beginTransaction(err => {
             if (err) {
-                res.send({ message: "Error: " + err });
-                return;
-            }
-            if (result.length > 0) {
-                res.send({ message: "Email already used!" });
+                res.send({ message: "Error starting transaction: " + err });
                 return;
             }
 
-            db.query(sqlCheckContactNumber, [contact_number], (err, result) => {
+            // Check if username, email, or contact number exists
+            const sqlCheck = "SELECT username FROM credentials WHERE username = ? UNION SELECT email FROM hospitals WHERE email = ?";
+            db.query(sqlCheck, [username, email], (err, result) => {
                 if (err) {
-                    res.send({ message: "Error: " + err });
+                    db.rollback(() => {
+                        res.send({ message: "Error: " + err });
+                    });
                     return;
                 }
                 if (result.length > 0) {
-                    res.send({ message: "Contact number already used!" });
+                    db.rollback(() => {
+                        res.send({ message: "Username or email already exists!" });
+                    });
                     return;
                 }
 
-                const sqlInsertCredentials = 'INSERT INTO credentials (username, password) VALUES (?, ?)';
-                const sqlInsertHospitals = 'INSERT INTO hospitals (hospital_id, name, contact_number, email, address) VALUES (LAST_INSERT_ID(), ?, ?, ?, ?)';
-
-                db.query(sqlInsertCredentials, [username, password], (err, result) => {
+                // Retrieve the highest numeric part of the existing hospital IDs
+                const sqlGetMaxHospitalId = "SELECT MAX(CAST(SUBSTRING(id, 4) AS UNSIGNED)) AS max_id FROM credentials WHERE id LIKE 'HOS%'";
+                db.query(sqlGetMaxHospitalId, (err, result) => {
                     if (err) {
-                        res.send({ message: 'Error in registration: ' + err });
+                        db.rollback(() => {
+                            res.send({ message: "Error: " + err });
+                        });
                         return;
                     }
-                    db.query(sqlInsertHospitals, [name, contact_number, email, address], (err, result) => {
+                    const maxHospitalId = result[0].max_id || 0;
+                    const nextHospitalIdNumber = maxHospitalId + 1;
+                    const newHospitalId = `HOS${nextHospitalIdNumber}`;
+
+                    // Insert into credentials table
+                    const sqlInsertCredentials = "INSERT INTO credentials (id, username, password) VALUES (?, ?, ?)";
+                    db.query(sqlInsertCredentials, [newHospitalId, username, password], (err, result) => {
                         if (err) {
-                            res.send({ message: 'Error in registration: ' + err });
-                        } else {
-                            res.send({ message: 'Hospital Registration Successful!', hospital_id: result.insertId });
+                            db.rollback(() => {
+                                res.send({ message: "Error in registration: " + err });
+                            });
+                            return;
                         }
+
+                        // Insert into hospitals table
+                        const sqlInsertHospitals = "INSERT INTO hospitals (hospital_id, name, contact_number, email, address) VALUES (?, ?, ?, ?, ?)";
+                        db.query(sqlInsertHospitals, [newHospitalId, name, contact_number, email, address], (err, result) => {
+                            if (err) {
+                                db.rollback(() => {
+                                    res.send({ message: "Error in registration: " + err });
+                                });
+                                return;
+                            }
+
+                            // Commit the transaction
+                            db.commit(err => {
+                                if (err) {
+                                    db.rollback(() => {
+                                        res.send({ message: "Error committing transaction: " + err });
+                                    });
+                                    return;
+                                }
+                                res.send({ message: "Hospital Registration Successful!", hospital_id: newHospitalId });
+                            });
+                        });
                     });
                 });
             });

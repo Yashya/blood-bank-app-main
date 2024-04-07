@@ -111,6 +111,6 @@ ADD COLUMN centre_id INT;
 
 ALTER TABLE blood_samples
 ADD CONSTRAINT fk_centre_id
-FOREIGN KEY (centre_id) REFERENCES donation_centres(centre_id);
+FOREIGN KEY (centre_id) REFERENCES donation_centers(center_id);
 
 

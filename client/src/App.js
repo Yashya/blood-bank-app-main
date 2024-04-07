@@ -12,8 +12,10 @@ import EmpDashboard from "./components/employee/EmpDarshboard";
 import Donate from "./components/layout/Donate";
 import Feedback from "./components/bloodbank/Feedback";
 import HospitalRegister from "./components/bloodbank/HospitalRegister";
-
-
+import BloodRequest from "./components/user/BloodRequest";
+import DonateBlood from "./components/user/DonateBlood";
+import PaymentGateway from "./components/bloodbank/PaymentGateway";
+import HospitalDashboard from "./components/layout/HospitalDashboard";
 //css
 import "./App.css";
 
@@ -32,6 +34,11 @@ function App() {
         <Route exact path="/login/emp/dash" element={<EmpDashboard />} />
         <Route exact path="/feedback" element={<Feedback />} />
         <Route exact path="/reg/hospital" element={<HospitalRegister />} />
+        <Route exact path="/request" element={<BloodRequest/>}/>
+        <Route exact path="/donateBlood" element={<DonateBlood/>}/>
+        <Route exact path="/makePayment" element={<PaymentGateway/>}/>
+        <Route exact path="/login/hospital/dash" element={<HospitalDashboard/>}/>
+
       </Routes>
     </div>
   );

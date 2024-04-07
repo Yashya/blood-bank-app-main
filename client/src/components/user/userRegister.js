@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
-// CSS
-import "../../assets/css/UserRegister.css";
-
 const UserRegister = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         address: "",
         date_of_birth: "",
-        role: "user", 
+        role: "user",
         gender: "",
         blood_group: "",
         contact_number: "",
@@ -31,7 +28,6 @@ const UserRegister = () => {
             } else {
                 alert("User Registration Successful!");
                 setErrorMessage("");
-                
             }
         });
     };
@@ -39,7 +35,7 @@ const UserRegister = () => {
     return (
         <div className="user-register">
             <h2>User Register</h2>
-            <form className="userReg-form">
+            <form>
                 {Object.keys(formData).map((key) => (
                     <input
                         key={key}
@@ -51,19 +47,8 @@ const UserRegister = () => {
                         required={key !== "role"}
                     />
                 ))}
-                <select name="blood_group" value={formData.blood_group} onChange={handleChange} required>
-                    <option value="">Select Blood Group</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                </select>
                 <button type="button" onClick={submitUserRegister}>REGISTER</button>
-                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                {errorMessage && <p>{errorMessage}</p>}
             </form>
         </div>
     );
