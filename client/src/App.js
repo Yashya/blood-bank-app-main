@@ -17,6 +17,11 @@ import DonateBlood from "./components/user/DonateBlood";
 import PaymentGateway from "./components/bloodbank/PaymentGateway";
 import HospitalDashboard from "./components/layout/HospitalDashboard";
 import BloodStock from "./components/employee/BloodStock";
+import ViewRequests from "./components/employee/ViewRequests";
+import ViewAudit from "./components/employee/ViewAudit"
+import ViewFeedback from "./components/employee/ViewFeedback.js";
+import ViewPayments from "./components/employee/ViewPayments.js";
+import ViewCenters from "./components/employee/ViewCenters.js";
 //css
 import "./App.css";
 
@@ -40,6 +45,11 @@ function App() {
         <Route exact path="/makePayment" element={<PaymentGateway/>}/>
         <Route exact path="/login/hospital/dash" element={<HospitalDashboard/>}/>
         <Route exact path="/view/blood-stock" element={<BloodStock/>}/>
+        <Route exact path="/view/requests" element={<ViewRequests/>}/>
+        <Route exact path="/view/audit" element={<ViewAudit/>}/>
+        <Route exact path="/view/feedback" element={<ViewFeedback/>}/>
+        <Route exact path="/view/payments" element={<ViewPayments/>}/>
+        <Route exact path="/view/donation-centers" element={<ViewCenters/>}/>
       </Routes>
     </div>
   );

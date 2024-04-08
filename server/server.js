@@ -28,6 +28,11 @@ import userRequestHandler from './controllers/user/UserRequestHandler.js';
 import donateBloodHandler from './controllers/user/DonateBloodHandler.js';
 import PaymentHandler from './controllers/bloodbank/PaymentHandler.js';
 import BloodStockHandler from './controllers/employee/BloodStockHandler.js';
+import ViewRequestsHandler from './controllers/employee/ViewRequestsHandler.js';
+import AuditLogHandler from './controllers/employee/AuditLogHandler.js';
+import ViewFeedback from './controllers/employee/ViewFeedbackHandler.js';
+import ViewPaymentsHandler from './controllers/employee/ViewPaymentHandler.js';
+import ViewCentersHandler from './controllers/employee/ViewCentersHandler.js';
 //create the app
 var app = express();
 
@@ -67,6 +72,11 @@ donateBloodHandler(app,db);
 PaymentHandler(app,db);
 HospitalDashboardHandler(app,db);
 BloodStockHandler(app,db);
+ViewRequestsHandler(app,db);
+AuditLogHandler(app,db);
+ViewFeedback(app,db);
+ViewPaymentsHandler(app,db);
+ViewCentersHandler(app,db);
 
 //listening the port
 app.listen(3001, (err) => {
