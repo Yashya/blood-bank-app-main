@@ -30,7 +30,7 @@ const UserRequestHandler = (app, db) => {
                 return;
               }
 
-              res.send({ success: true, available: true, redirectUrl: '/paymentGateway?units=' + unitsRequired + '&requestId=' + newRequestId });
+              res.send({ success: true, available: true, redirectUrl: '/makePayment?units=' + unitsRequired + '&requestId=' + newRequestId });
             });
           } else {
             const insertRequestQuery = `INSERT INTO request_blood (request_id, hospital_id, patient_id, blood_group, required_quantity, status) VALUES (?, ${isHospital ? '?' : 'NULL'}, ${isHospital ? 'NULL' : '?'}, ?, ?, 'Unavailable')`;

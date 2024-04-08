@@ -27,6 +27,7 @@ import uDashboardHandler from './controllers/user/UDashboardHandler.js';
 import userRequestHandler from './controllers/user/UserRequestHandler.js';
 import donateBloodHandler from './controllers/user/DonateBloodHandler.js';
 import PaymentHandler from './controllers/bloodbank/PaymentHandler.js';
+import BloodStockHandler from './controllers/employee/BloodStockHandler.js';
 //create the app
 var app = express();
 
@@ -65,6 +66,7 @@ userRequestHandler(app,db);
 donateBloodHandler(app,db);
 PaymentHandler(app,db);
 HospitalDashboardHandler(app,db);
+BloodStockHandler(app,db);
 
 //listening the port
 app.listen(3001, (err) => {

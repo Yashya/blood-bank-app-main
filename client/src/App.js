@@ -16,6 +16,7 @@ import BloodRequest from "./components/user/BloodRequest";
 import DonateBlood from "./components/user/DonateBlood";
 import PaymentGateway from "./components/bloodbank/PaymentGateway";
 import HospitalDashboard from "./components/layout/HospitalDashboard";
+import BloodStock from "./components/employee/BloodStock";
 //css
 import "./App.css";
 
@@ -38,7 +39,7 @@ function App() {
         <Route exact path="/donateBlood" element={<DonateBlood/>}/>
         <Route exact path="/makePayment" element={<PaymentGateway/>}/>
         <Route exact path="/login/hospital/dash" element={<HospitalDashboard/>}/>
-
+        <Route exact path="/view/blood-stock" element={<BloodStock/>}/>
       </Routes>
     </div>
   );

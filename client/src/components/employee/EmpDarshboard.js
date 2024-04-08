@@ -21,6 +21,9 @@ const EmpDashBoard = () => {
       <a href="/view/payments">
         <button>View Payments</button>
       </a>
+      <a href="/view/donation-centers">  
+        <button>View Donation Centers</button>  
+      </a>
     </div>
   );
 };

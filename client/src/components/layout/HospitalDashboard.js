@@ -40,6 +40,22 @@ const HospitalDashboard = () => {
       });
     });
   };
+  const refreshRequestStatus = () => {
+    Axios.post('http://localhost:3001/updateRequestStatus', {
+      hospitalId: hospitalId,
+      hospitalUsername: hospitalUsername,
+    }).then((response) => {
+      if (response.data.success) {
+        setSubmittedRequests(response.data.requests); // Update the state with the refreshed statuses
+      } else {
+        alert('Error refreshing request statuses: ' + response.data.message);
+      }
+    }).catch((error) => {
+      console.error(error);
+      alert('Error refreshing request statuses.');
+    });
+  };
+  
 
   // Function to fetch requests made by the hospital
   const fetchHospitalRequests = () => {
@@ -67,7 +83,7 @@ const HospitalDashboard = () => {
 
   // Function to redirect to the payment gateway
   const redirectToPaymentGateway = (requestId, unitsRequired) => {
-    const url = `/paymentGateway?requestId=${requestId}&units=${unitsRequired}`;
+    const url = `/makePayment?requestId=${requestId}&units=${unitsRequired}`;
     window.location.href = url;
   };
 
@@ -109,7 +125,8 @@ const HospitalDashboard = () => {
 
       <button onClick={addRequestField}>Add Another Request</button>
       <button onClick={submitRequests}>Submit Requests</button>
-      <button onClick={fetchHospitalRequests}>Refresh Status</button>
+      <button onClick={refreshRequestStatus}>Refresh Status</button>
+
 
       <table>
         <thead>
