@@ -1,6 +1,11 @@
 const UserRequestHandler = (app, db) => {
   app.post('/bloodRequest', (req, res) => {
     const { userId, username, bloodType, unitsRequired, isHospital } = req.body;
+    if (parseInt(unitsRequired) <= 0) {
+      res.send({ success: false, message: "Units required must be greater than 0." });
+      return;
+    }
+
 
     const insertBloodRequest = (user_id) => {
       const prefix = isHospital ? 'REQH' : 'REQ';

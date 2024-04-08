@@ -1,6 +1,6 @@
 const EmployeeRegisterHandler = (app, db) => {
     app.post("/reg/emp", (req, res) => {
-        const { empName, empMail, empPhone, empAddress, username, password } = req.body;
+        const { empName, empMail, empPhone, empAddress, empDOB, empGender, empBloodGroup, username, password } = req.body;
 
         // Start a transaction
         db.beginTransaction(err => {
@@ -49,8 +49,8 @@ const EmployeeRegisterHandler = (app, db) => {
                         }
 
                         // Insert into users table
-                        const sqlInsertUsers = "INSERT INTO users (user_id, name, email, address, role, contact_number) VALUES (?, ?, ?, ?, 'employee', ?)";
-                        db.query(sqlInsertUsers, [newEmpId, empName, empMail, empAddress, empPhone], (err, result) => {
+                        const sqlInsertUsers = "INSERT INTO users (user_id, name, email, address, role, contact_number, date_of_birth, gender, blood_group) VALUES (?, ?, ?, ?, 'employee', ?, ?, ?, ?)";
+                        db.query(sqlInsertUsers, [newEmpId, empName, empMail, empAddress, empPhone, empDOB, empGender, empBloodGroup], (err, result) => {
                             if (err) {
                                 db.rollback(() => {
                                     res.send({ message: "Error in registration: " + err });

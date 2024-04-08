@@ -2,6 +2,10 @@ const HospitalDashboardHandler = (app, db) => {
     app.post('/hospitalBloodRequest', (req, res) => {
       const { hospitalId, hospitalUsername, bloodType, unitsRequired } = req.body;
   
+      if (parseInt(unitsRequired) <= 0) {
+        res.send({ success: false, message: "Units required must be greater than 0." });
+        return;
+      }
       // Function to insert the blood request
       const insertBloodRequest = (hospital_id) => {
         // Generate a new request ID with the prefix "REQH"

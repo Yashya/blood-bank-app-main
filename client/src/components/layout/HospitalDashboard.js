@@ -6,6 +6,7 @@ const HospitalDashboard = () => {
   const [hospitalId, setHospitalId] = useState('');
   const [hospitalUsername, setHospitalUsername] = useState('');
   const [submittedRequests, setSubmittedRequests] = useState([]);
+  const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   // Function to handle change in request fields
   const handleRequestChange = (index, event) => {
@@ -107,12 +108,16 @@ const HospitalDashboard = () => {
       {requests.map((request, index) => (
         <div key={index}>
           <label>Blood Type:</label>
-          <input
-            type='text'
+          <select
             name='bloodType'
             value={request.bloodType}
             onChange={(event) => handleRequestChange(index, event)}
-          />
+          >
+            <option value="">Select Blood Group</option>
+            {bloodGroups.map((group) => (
+              <option key={group} value={group}>{group}</option>
+            ))}
+          </select>
           <label>Units Required:</label>
           <input
             type='number'

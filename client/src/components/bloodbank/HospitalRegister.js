@@ -18,9 +18,29 @@ const HospitalRegister = () => {
         setHospitalData({ ...hospitalData, [e.target.name]: e.target.value });
     };
 
+    const validateForm = () => {
+        // Check if the contact number is exactly 10 digits
+        if (!/^\d{10}$/.test(hospitalData.contact_number)) {
+            setErrorMessage("Contact number must be exactly 10 digits.");
+            return false;
+        }
+
+        // Check if the email address contains '@'
+        if (!hospitalData.email.includes("@")) {
+            setErrorMessage("Email address must contain '@'.");
+            return false;
+        }
+
+        return true;
+    };
+
     const submitHospitalRegister = () => {
-        const regUrl = 'http://localhost:3001/reg/hospital';
-        Axios.post(regUrl, hospitalData).then((response) => {
+        // Validate the form data
+        if (!validateForm()) {
+            return;
+        }
+
+        Axios.post('http://localhost:3001/reg/hospital', hospitalData).then((response) => {
             if (response.data.message) {
                 setErrorMessage(response.data.message);
             } else {

@@ -19,6 +19,13 @@ const DonateBlood = () => {
   }, []);
 
   const submitDonation = () => {
+    // Validate the volume field
+    if (parseInt(volume) <= 0) {
+      alert("Volume must be greater than 0.");
+      return;
+    }
+
+    // Fetch donor ID and proceed with donation
     if (username) {
       Axios.get('http://localhost:3001/getUserId', {
         params: {

@@ -6,9 +6,16 @@ const BloodRequest = () => {
   const [unitsRequired, setUnitsRequired] = useState('');
   const [userId, setUserId] = useState('');
   const [username, setUsername] = useState('');
+  const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (parseInt(unitsRequired) <= 0) {
+      alert('Units required must be greater than 0.');
+      return;
+    }
+
     if (unitsRequired > 5) {
       alert('Normal users can request a maximum of 5 units.');
       return;
@@ -38,7 +45,12 @@ const BloodRequest = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Blood Type:
-          <input type="text" value={bloodType} onChange={(e) => setBloodType(e.target.value)} />
+          <select value={bloodType} onChange={(e) => setBloodType(e.target.value)}>
+            <option value="">Select Blood Group</option>
+            {bloodGroups.map((group) => (
+              <option key={group} value={group}>{group}</option>
+            ))}
+          </select>
         </label>
         <label>
           Units Required:
