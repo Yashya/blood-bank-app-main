@@ -28,11 +28,11 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #228B22;
     color: white;
     cursor: pointer;
 }
 
 .hospital-register form button:hover {
-    background-color: #0056b3;
+    background-color: #228B22	;
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import "../../assets/css/ViewAudit.css";
+
 const ViewAudit = () => {
   const [auditLogs, setAuditLogs] = useState([]);
   const [searchId, setSearchId] = useState('');
@@ -28,18 +30,19 @@ const ViewAudit = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Audit Log</h2>
-      <div>
+      <div className="search-container">
         <input
           type="text"
           placeholder="Search by AUID"
           value={searchId}
           onChange={handleSearchChange}
+          className='search-input'
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} className="search-button">Search</button>
       </div>
-      <table>
+      <table className="audit-table">
         <thead>
           <tr>
             <th>Id</th>

@@ -1,0 +1,47 @@
+/* ViewCenters.css */
+.container {
+    padding: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  .input-field {
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .add-button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .centers-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .centers-table th,
+  .centers-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .centers-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .remove-button {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

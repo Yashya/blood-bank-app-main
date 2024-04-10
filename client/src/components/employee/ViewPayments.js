@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "../../assets/css/ViewPayments.css";
+
 
 const ViewPayments = () => {
   const [payments, setPayments] = useState([]);
@@ -33,15 +35,16 @@ const ViewPayments = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Payments</h2>
-      <div>
+      <div className="search-container">
         <input
           type="text"
           name="paymentId"
           placeholder="Search by Payment ID"
           value={searchPaymentId}
           onChange={handleSearchChange}
+          className='search-input'
         />
         <input
           type="text"
@@ -49,10 +52,11 @@ const ViewPayments = () => {
           placeholder="Search by Request ID"
           value={searchRequestId}
           onChange={handleSearchChange}
+          className='search-input'
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} className="search-button">Search</button>
       </div>
-      <table>
+      <table className="payments-table">
         <thead>
           <tr>
             <th>Payment ID</th>

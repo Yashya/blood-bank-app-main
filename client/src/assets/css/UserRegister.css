@@ -1,44 +1,62 @@
-.user-register{
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    text-align: center;
-    font-family:monospace;}
-.userReg-form{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-}
-.userReg-form input{
-    margin:2px;
-    width: 500px;
-    height: 30px;
-   padding-left: 1em;
-    border-radius: 30pxd;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-}
-.userReg-form input:focus{
-    outline:none;
-    content: none;
+.user-register {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.userReg-form button{
-    width: 90px;
-    height: 30px;
-    align-items: center;
-    border-radius: 30px;
-    margin-top: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-    outline: none;
+.user-register h2 {
+    text-align: center;
+    margin-bottom: 10px;
 }
-.userReg-form button:hover{
-    color:white;
-    background-color: black;
+
+.user-register form {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-register form div {
+    margin-bottom: 10px;
+}
+
+.user-register form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.user-register form input[type="text"],
+.user-register form input[type="password"],
+.user-register form input[type="date"],
+.user-register form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.user-register form input[type="radio"] {
+    margin-right: 5px;
+}
+
+.user-register form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-register form button:hover {
+    background-color: #45a049;
+}
+
+.user-register form p {
+    color: red;
+    text-align: center;
 }

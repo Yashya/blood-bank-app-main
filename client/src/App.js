@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
+
 import Navbar from "./components/layout/Navbar";
 import Dashboard from "./components/layout/Dashboard";
 import UserLogin from "./components/user/userLogin";
@@ -24,6 +25,12 @@ import ViewPayments from "./components/employee/ViewPayments.js";
 import ViewCenters from "./components/employee/ViewCenters.js";
 //css
 import "./App.css";
+import "./index.css"
+//fonts
+import "./fonts/Sebino-Regular.ttf"
+import "./fonts/sequel-sans-black-disp.ttf"
+import "./fonts/HelveticaNowText-Medium.ttf"
+import "./fonts/VayuSans-ExtraBold.ttf"
 
 function App() {
   return (

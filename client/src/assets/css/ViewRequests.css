@@ -1,0 +1,52 @@
+/* ViewRequests.css */
+.container {
+    padding: 20px;
+  }
+  
+  .search-container {
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .search-button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .requests-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .requests-table th,
+  .requests-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .requests-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .edit-input {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .save-button {
+    padding: 5px 10px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

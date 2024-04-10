@@ -1,0 +1,39 @@
+/* ViewPayments.css */
+.container {
+    padding: 20px;
+  }
+  
+  .search-container {
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .search-button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .payments-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .payments-table th,
+  .payments-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .payments-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  

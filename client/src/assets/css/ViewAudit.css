@@ -1,0 +1,39 @@
+/* ViewAudit.css */
+.container {
+    padding: 20px;
+  }
+  
+  .search-container {
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .search-button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .audit-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .audit-table th,
+  .audit-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .audit-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  

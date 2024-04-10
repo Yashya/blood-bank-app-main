@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'SequelSansBlackDisp';
+    src: url('./fonts/sequel-sans-black-disp.ttf') format('truetype');
+  }
+  
+  /* index.css */
+@font-face {
+    font-family: 'SebinoRegular';
+    src: url('./fonts/Sebino-Regular.ttf') format('truetype');
+  }
+  
+  /* Dashboard.css */
+@font-face {
+    font-family: 'VayuSansExtraBold';
+    src: url('./fonts/VayuSans-ExtraBold.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'HelveticaNowTextMedium';
+    src: url('./fonts/HelveticaNowText-Medium.ttf') format('truetype');
+  }
+  

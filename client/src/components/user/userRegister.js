@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
+import "../../assets/css/UserRegister.css"
 const UserRegister = () => {
     const [formData, setFormData] = useState({
         name: "",
@@ -110,15 +111,17 @@ const UserRegister = () => {
                         );
                     } else {
                         return (
-                            <input
-                                key={key}
-                                name={key}
-                                type={key === "password" ? "password" : "text"}
-                                placeholder={key.replace("_", " ").toUpperCase()}
-                                value={formData[key]}
-                                onChange={handleChange}
-                                required
-                            />
+                            <div key={key}>
+                                <label>{key.replace("_", " ").toUpperCase()}:</label>
+                                <input
+                                    type={key === "password" ? "password" : "text"}
+                                    name={key}
+                                    placeholder={key.replace("_", " ").toUpperCase()}
+                                    value={formData[key]}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
                         );
                     }
                 })}

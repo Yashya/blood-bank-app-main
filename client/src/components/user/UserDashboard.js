@@ -39,10 +39,12 @@ const UserDashboard = () => {
   };
 
   return (
-    <div className='user-dash'>
+    <div className='user-dashboard'>
+    <h1>Welcome to Your Dashboard</h1>
+    <div>
       <button onClick={donate}>DONATE</button>
       <button onClick={request}>REQUEST</button>
-
+</div>
       {/* Input field and button to search for blood request status */}
       <div>
         <input

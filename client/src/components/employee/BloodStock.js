@@ -63,10 +63,26 @@ const BloodStock = () => {
   
 
   return (
-    <div>
-      <h2>Blood Stock</h2>
+    <div style={{ height: '60vh', width: '80vw' }}>
+      <h2 style={{ textAlign: 'center' }}>Blood Stock</h2>
+      <button 
+  style={{
+    background: '#4CAF50',
+    border: 'none',
+    color: 'white',
+    padding: '10px 20px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px',
+    margin: '4px 2px',
+    cursor: 'pointer',
+    borderRadius: '12px'
+  }} 
+  onClick={fetchBloodStock}>
+  Refresh
+</button>
       <Bar data={data} options={options} />
-      <button onClick={fetchBloodStock}>Refresh</button>
     </div>
   );
 };

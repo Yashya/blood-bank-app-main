@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import "../../assets/css/ViewCenters.css";
+
+
+
 const ViewCenters = () => {
   const [centers, setCenters] = useState([]);
   const [newCenter, setNewCenter] = useState({
@@ -55,15 +59,16 @@ const ViewCenters = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Donation Centers</h2>
-      <div>
+      <div className="input-container">
         <input
           type="text"
           name="name"
           placeholder="Center Name"
           value={newCenter.name}
           onChange={handleInputChange}
+          className='input-field'
         />
         <input
           type="text"
@@ -71,6 +76,7 @@ const ViewCenters = () => {
           placeholder="Contact Number"
           value={newCenter.contact_number}
           onChange={handleInputChange}
+          className='input-field'
         />
         <input
           type="email"
@@ -78,6 +84,7 @@ const ViewCenters = () => {
           placeholder="Email"
           value={newCenter.email}
           onChange={handleInputChange}
+          className='input-field'
         />
         <input
           type="text"
@@ -85,10 +92,11 @@ const ViewCenters = () => {
           placeholder="Address"
           value={newCenter.address}
           onChange={handleInputChange}
+          className='input-field'
         />
-        <button onClick={handleAddCenter}>Add Center</button>
+        <button onClick={handleAddCenter} className="add-button">Add Center</button>
       </div>
-      <table>
+      <table className="centers-table">
         <thead>
         <tr>
             <th>Center ID</th>
@@ -108,7 +116,7 @@ const ViewCenters = () => {
               <td>{center.email}</td>
               <td>{center.address}</td>
               <td>
-                <button onClick={() => handleRemoveCenter(center.center_id)}>Remove</button>
+                <button className="remove-button" onClick={() => handleRemoveCenter(center.center_id)}>Remove</button>
               </td>
             </tr>
           ))}

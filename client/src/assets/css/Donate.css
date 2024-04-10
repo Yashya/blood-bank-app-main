@@ -1,30 +1,96 @@
+/* Donate.css */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #f4f4f4;
+  color: #333;
+}
+
 .donate {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-self: center;
-  margin-top: 235px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Heading */
+.donate h1 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Subtext */
+.donate p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
 .donate button {
-  margin: 20px;
-  height: 80px;
-  width: 150px;
-  font-size: 18px;
-  font-family: monospace;
-  border-radius: 150px;
-  -webkit-border-radius: 150px;
-  -moz-border-radius: 150px;
-  -ms-border-radius: 150px;
-  -o-border-radius: 150px;
+  background-color: #e3342f;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
 }
+
 .donate button:hover {
-  text-decoration: none;
-  background-color: black;
-  color: white;
-  outline: none;
+  background-color: #cc1f1a;
 }
-.feedback-button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+
+/* Input Fields */
+.donate input[type='text'],
+.donate input[type='password'] {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  width: 10%;
 }
+
+/* Login Message */
+.donate .login-message {
+  color: #e3342f;
+  margin-bottom: 1rem;
+}
+
+/* Ensure everything is centered */
+.donate .common-login-form,
+.donate .search-user-id,
+.donate .feedback {
+  text-align: center;
+}
+
+/* Additional Content */
+.donate .additional-content h3 {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Feedback Button */
+.donate .feedback button {
+  background-color: #f9d71c;
+}
+
+.donate .feedback button:hover {
+  background-color: #f9c71c;
+}
+
+
+/* Adjust layout for smaller screens */
+@media (max-width: 768px) {
+  .donate {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .donate button {
+    margin-bottom: 1rem;
+  }
+}
+

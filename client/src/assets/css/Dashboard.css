@@ -1,28 +1,105 @@
-.dashboard {
-  padding: 20px;
+
+
+.search-area {
+    text-align: center;
+    padding: 40px;
+    background: #f8f8f8;
+}
+.nearest-center-text {
+  font-family: 'HelveticaNowTextMedium';
+  text-align: left; 
+  font-size: 2.5em;
 }
 
-.dashboard h1 {
+.search-area h1 {
+    margin-bottom: 1px;
+    font-size: 2.5em;
+    font-family: 'SequelSansBlackDisp';
+}
+
+.search-area p {
+    margin-bottom: 20px;
+    color: #000;
+    font-family: 'SebinoRegular';
+}
+
+.search-area input[type='text'] {
+    width: 60%;
+    padding: 15px;
+    margin-bottom: 4px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the center list */
+.donation-centers .center-card {
+  font-family: 'VayuSans';
+  margin-bottom: 1px; /* space between center cards */
+  padding: 15px;
+  border: 1px solid #e1e1e1; /* light grey border */
+  border-radius: 4px; /* rounded corners */
+}
+
+.donation-centers .center-card h2 {
+  font-size: 1.2em; /* 20px if base is 16px */
+  margin-bottom: 5px; /* space between the title and address */
+  color: #333; /* dark grey color for the text */
+}
+
+.donation-centers .center-card p {
+  font-size: 1em; /* 16px */
+  color: #666; /* medium grey color for the text */
+}
+
+/* Styles for the action buttons container */
+.donation-centers .center-actions {
   text-align: center;
-  margin-bottom: 20px;
+  padding: 2px 0; /* space above and below the buttons */
 }
 
-.donation-centers-table {
-  width: 100%;
-  border-collapse: collapse;
+/* Styles for the buttons */
+.donation-centers .center-actions button {
+  font-family: 'VayuSans';
+  background-color: #000; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.donation-centers-table th,
-.donation-centers-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+.donation-centers .center-actions button:hover {
+  background-color: #003d82; /* Darker blue on hover */
 }
 
-.donation-centers-table th {
-  background-color: #f2f2f2;
+/* Ensure buttons appear in a row */
+.donation-centers .center-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.donation-centers-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+/* Ensure spacing between buttons on smaller screens */
+.donation-centers .center-actions button:not(:last-child) {
+  margin-right: 15px;
+}
+
+.search-area h1, .donation-centers h2 {
+  font-family: 'SequelSansBlackDisp';
+}
+
+.search-area p, .donation-centers .center-card p {
+  font-family: 'SebinoRegular';
+  color: #797a81;
+}
+
+.nearest-center-text {
+  font-family: 'HelveticaNowTextMedium';
+}
+
+.donation-centers h2 {
+  font-family: 'VayuSans';
 }

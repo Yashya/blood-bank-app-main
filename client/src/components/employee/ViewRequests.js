@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import "../../assets/css/ViewRequests.css";
 const ViewRequests = () => {
   const [requests, setRequests] = useState([]);
   const [searchParams, setSearchParams] = useState({
@@ -52,24 +53,26 @@ const ViewRequests = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Requests</h2>
-      <div>
+      <div className="search-container">
         <input
           type="text"
           name="requestId"
           placeholder="Search by Request ID"
           onChange={handleSearchChange}
+          className='search-input'
         />
         <input
           type="text"
           name="patientId"
           placeholder="Search by Patient ID"
           onChange={handleSearchChange}
+          className='search-input'
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} className="search-button">Search</button>
       </div>
-      <table>
+      <table className="requests-table">
         <thead>
           <tr>
             <th>Request ID</th>
@@ -92,6 +95,7 @@ const ViewRequests = () => {
                   type="text"
                   value={request.blood_group}
                   onChange={(e) => handleUpdate(index, 'blood_group', e.target.value)}
+                  className='edit-input'
                 />
               </td>
               <td>
@@ -99,6 +103,7 @@ const ViewRequests = () => {
                   type="number"
                   value={request.required_quantity}
                   onChange={(e) => handleUpdate(index, 'required_quantity', e.target.value)}
+                  className='edit-input'
                 />
               </td>
               <td>
@@ -112,7 +117,7 @@ const ViewRequests = () => {
                 </select>
               </td>
               <td>
-                <button onClick={() => saveUpdates(request.request_id, index)}>Save</button>
+                <button onClick={() => saveUpdates(request.request_id, index)} className='save-button'>Save</button>
               </td>
             </tr>
           ))}

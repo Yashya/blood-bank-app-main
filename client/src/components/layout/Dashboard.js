@@ -1,50 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from './Footer';
-
-// CSS
 import '../../assets/css/Dashboard.css';
 
 const Dashboard = () => {
-    const [donationCenters, setDonationCenters] = useState([]);
-  
-    useEffect(() => {
-        axios.get('http://localhost:3001/home')
-            .then(function (response) {
-                setDonationCenters(response.data);
-            });
-    }, []);
+  const [donationCenters, setDonationCenters] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-    return (
-        <div className='dashboard'>
-            <h1>Donation Centers</h1>
+  useEffect(() => {
+    axios.get(`http://localhost:3001/home?searchTerm=${searchTerm}`)
+      .then(function (response) {
+        setDonationCenters(response.data);
+      });
+  }, [searchTerm]);
 
-            <table className='donation-centers-table'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Contact Number</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {donationCenters.length > 0 && donationCenters.map((center) => {
-                        return (
-                            <tr key={center.center_id}>
-                                <td>{center.name}</td>
-                                <td>{center.contact_number}</td>
-                                <td>{center.email}</td>
-                                <td>{center.address}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
-            <Footer />
-        </div>
-    );
+  return (
+    <div className='dashboard'>
+      <div className='search-area'>
+        <h1>Find a Donation Center</h1>
+        <p>Locate the nearest donation center and help save lives.</p>
+        <input
+          type='text'
+          placeholder='Enter your location to find the nearest donation center...'
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <h3 className='nearest-center-text'>Find the Nearest Center</h3>
+      </div>
+
+      <div className='donation-centers'>
+        {donationCenters.map((center) => (
+          <div key={center.center_id} className='center-card'>
+            <h2>{center.name}</h2>
+            <p>{center.address}</p>
+            <p>Email: {center.email}</p>
+            <p>Phone: {center.contact_number}</p>
+          </div>
+        ))}
+      </div>
+
+      <Footer />
+    </div>
+  );
 };
 
 export default Dashboard;

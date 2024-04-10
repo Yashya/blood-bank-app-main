@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import "../../assets/css/ViewFeedback.css";
+
 const ViewFeedback = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [searchUserId, setSearchUserId] = useState('');
@@ -28,18 +30,19 @@ const ViewFeedback = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Feedback</h2>
-      <div>
+      <div className="search-container">
         <input
           type="text"
           placeholder="Search by User ID"
           value={searchUserId}
           onChange={handleSearchChange}
+          className='search-input'
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} className="search-button">Search</button>
       </div>
-      <table>
+      <table className="feedback-table">
         <thead>
           <tr>
             <th>Feedback ID</th>
