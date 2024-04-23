@@ -6,6 +6,7 @@ import '../../assets/css/UserDash.css';
 const UserDashboard = () => {
   const [requestId, setRequestId] = useState('');
   const [requestStatus, setRequestStatus] = useState(null);
+  const [paymentEnabled, setPaymentEnabled] = useState(false);
 
   // Donate function
   const donate = () => {
@@ -23,8 +24,9 @@ const UserDashboard = () => {
     }).then((response) => {
       if (response.data.success) {
         setRequestStatus(response.data.requestStatus);
+        setPaymentEnabled(response.data.paymentEnabled);
       } else {
-        alert('Request ID not found!');
+        alert(response.data.message);
       }
     }).catch((error) => {
       console.log(error);
@@ -40,11 +42,11 @@ const UserDashboard = () => {
 
   return (
     <div className='user-dashboard'>
-    <h1>Welcome to Your Dashboard</h1>
-    <div>
-      <button onClick={donate}>DONATE</button>
-      <button onClick={request}>REQUEST</button>
-</div>
+      <h1>Welcome to Your Dashboard</h1>
+      <div>
+        <button onClick={donate}>DONATE</button>
+        <button onClick={request}>REQUEST</button>
+      </div>
       {/* Input field and button to search for blood request status */}
       <div>
         <input
@@ -64,8 +66,8 @@ const UserDashboard = () => {
           <p>Blood Group: {requestStatus.blood_group}</p>
           <p>Required Quantity: {requestStatus.required_quantity}</p>
           <p>Status: {requestStatus.status}</p>
-          {/* Display Make Payment button only when status is Available */}
-          {requestStatus.status === 'Available' && (
+          {/* Display Make Payment button only when payment is enabled */}
+          {paymentEnabled && (
             <button onClick={redirectToPaymentGateway}>Make Payment</button>
           )}
         </div>

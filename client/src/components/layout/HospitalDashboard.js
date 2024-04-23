@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
+import '../../assets/css/HospitalDash.css';
+
 const HospitalDashboard = () => {
   const [requests, setRequests] = useState([{ bloodType: '', unitsRequired: '' }]);
   const [hospitalId, setHospitalId] = useState('');

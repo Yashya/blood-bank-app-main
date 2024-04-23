@@ -1,0 +1,61 @@
+/* General Styles for the Blood Request Page */
+.blood-request-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.blood-request-container h1 {
+    color: #d32f2f;
+    text-align: center;
+}
+
+/* Style for form and form elements */
+.blood-request-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.blood-request-container label {
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.blood-request-container input[type="text"],
+.blood-request-container input[type="number"],
+.blood-request-container select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for buttons */
+.blood-request-container button {
+    padding: 10px;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.blood-request-container button:hover {
+    background-color: #b71c1c;
+}
+
+/* Media query for responsive adjustments */
+@media (max-width: 768px) {
+    .blood-request-container {
+        width: 90%;
+        padding: 15px;
+    }
+}

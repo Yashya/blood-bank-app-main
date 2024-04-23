@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-
+import '../../assets/css/BloodRequest.css';
 const BloodRequest = () => {
   const [bloodType, setBloodType] = useState('');
   const [unitsRequired, setUnitsRequired] = useState('');
@@ -21,6 +21,29 @@ const BloodRequest = () => {
       return;
     }
 
+    // Additional validation for username and userId
+    if (username && userId) {
+      Axios.get(`http://localhost:3001/validateUser`, {
+        params: {
+          userId: userId,
+          username: username
+        }
+      }).then(response => {
+        if (response.data.success) {
+          submitBloodRequest();
+        } else {
+          alert('Username and User ID do not match. Please enter correct information.');
+        }
+      }).catch(error => {
+        console.error('Validation error:', error);
+        alert('Error validating user information.');
+      });
+    } else {
+      submitBloodRequest();
+    }
+  };
+
+  const submitBloodRequest = () => {
     Axios.post('http://localhost:3001/bloodRequest', {
       userId: userId,
       username: username,
@@ -36,13 +59,17 @@ const BloodRequest = () => {
       } else {
         alert('Error: ' + response.data.message);
       }
+    }).catch(error => {
+      console.error('Submission error:', error);
+      alert('Error submitting blood request.');
     });
   };
 
   return (
-    <div>
+    <div className="blood-request-container">
       <h1>Blood Request</h1>
       <form onSubmit={handleSubmit}>
+      <p>Please enter either user id or username</p>
         <label>
           Blood Type:
           <select value={bloodType} onChange={(e) => setBloodType(e.target.value)}>
