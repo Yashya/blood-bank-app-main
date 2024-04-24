@@ -32,6 +32,13 @@ const EmployeeRegister = () => {
             setErrorMessage("Email address must contain '@'.");
             return false;
         }
+        const today = new Date();
+    const dob = new Date(formData.empDOB);
+    if (dob > today) {
+        setErrorMessage("Date of birth cannot be in the future.");
+        return false;
+    }
+
 
         return true;
     };

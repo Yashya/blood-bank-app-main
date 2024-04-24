@@ -32,8 +32,16 @@ const UserRegister = () => {
             setErrorMessage("Email address must contain '@'.");
             return false;
         }
+        const dob = new Date(formData.date_of_birth);
+    const today = new Date();
+    if (dob > today) {
+        setErrorMessage("Date of birth cannot be in the future.");
+        return false;
+    }
+
 
         return true;
+        
     };
 
     const submitUserRegister = () => {

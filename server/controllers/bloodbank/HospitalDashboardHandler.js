@@ -61,6 +61,8 @@ const HospitalDashboardHandler = (app, db) => {
         res.send({ success: false, message: "Hospital ID or username is required." });
       }
     });
+    
+
   
     app.post('/fetchHospitalRequests', (req, res) => {
         const { hospitalId, hospitalUsername } = req.body;

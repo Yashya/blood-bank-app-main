@@ -46,7 +46,7 @@ const UserRequestHandler = (app, db) => {
                 return;
               }
 
-              res.send({ success: true, available: false });
+              res.send({ success: true, available: false,requestId: newRequestId });
             });
           }
         });

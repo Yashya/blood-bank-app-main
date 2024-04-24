@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PaymentGateway = () => {
   const [amount, setAmount] = useState(0);
   const [requestId, setRequestId] = useState('');
   const location = useLocation();
+  const navigate = useNavigate();   
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -22,7 +23,7 @@ const PaymentGateway = () => {
     }).then((response) => {
       if (response.data.success) {
         alert('Payment successful!');
-        // Redirect or perform additional actions after successful payment
+        navigate('/thank-you');
       } else {
         alert('Payment failed. Please try again.');
       }

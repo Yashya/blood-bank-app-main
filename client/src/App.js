@@ -23,6 +23,9 @@ import ViewAudit from "./components/employee/ViewAudit"
 import ViewFeedback from "./components/employee/ViewFeedback.js";
 import ViewPayments from "./components/employee/ViewPayments.js";
 import ViewCenters from "./components/employee/ViewCenters.js";
+import AboutUs from "./components/layout/AboutUs.js";
+import Contact from "./components/layout/Contact.js";
+import Thank_you from "./components/layout/Thank_you.js";
 //css
 import "./App.css";
 import "./index.css"
@@ -57,6 +60,10 @@ function App() {
         <Route exact path="/view/feedback" element={<ViewFeedback/>}/>
         <Route exact path="/view/payments" element={<ViewPayments/>}/>
         <Route exact path="/view/donation-centers" element={<ViewCenters/>}/>
+        <Route exact path="/about" element={<AboutUs/>}/>
+        <Route exact path="/contact" element={<Contact/>}/>
+        <Route exact path="/thank-you" element={<Thank_you/>}/>
+
       </Routes>
     </div>
   );

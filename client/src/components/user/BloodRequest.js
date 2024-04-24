@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import '../../assets/css/BloodRequest.css';
+
 const BloodRequest = () => {
   const [bloodType, setBloodType] = useState('');
   const [unitsRequired, setUnitsRequired] = useState('');
   const [userId, setUserId] = useState('');
   const [username, setUsername] = useState('');
+  const [requestId, setRequestId] = useState('');  // State to store the request ID
   const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (parseInt(unitsRequired) <= 0) {
       alert('Units required must be greater than 0.');
       return;
     }
-
     if (unitsRequired > 5) {
       alert('Normal users can request a maximum of 5 units.');
       return;
     }
-
-    // Additional validation for username and userId
     if (username && userId) {
       Axios.get(`http://localhost:3001/validateUser`, {
         params: {
@@ -50,11 +48,17 @@ const BloodRequest = () => {
       bloodType: bloodType,
       unitsRequired: unitsRequired,
     }).then((response) => {
+      // Always set the requestId if it's included in the response
+      if (response.data.requestId) {
+        setRequestId(response.data.requestId);
+      }
+  
       if (response.data.success) {
         if (response.data.available) {
           window.location.href = response.data.redirectUrl;
         } else {
-          alert('Request has been made but the blood requested is currently unavailable.');
+          // Inform user the blood type is unavailable but provide the request ID
+          alert(`Request has been made but the blood requested is currently unavailable. Your Request ID is: ${response.data.requestId}`);
         }
       } else {
         alert('Error: ' + response.data.message);
@@ -64,12 +68,12 @@ const BloodRequest = () => {
       alert('Error submitting blood request.');
     });
   };
-
+  
   return (
     <div className="blood-request-container">
       <h1>Blood Request</h1>
       <form onSubmit={handleSubmit}>
-      <p>Please enter either user id or username</p>
+        <p>Please enter either user id or username</p>
         <label>
           Blood Type:
           <select value={bloodType} onChange={(e) => setBloodType(e.target.value)}>
@@ -93,6 +97,7 @@ const BloodRequest = () => {
         </label>
         <button type="submit">Submit Request</button>
       </form>
+      {requestId && <p>Your Request ID: {requestId}</p>}  {/* Display the request ID if available */}
     </div>
   );
 };
