@@ -33,7 +33,6 @@ import AuditLogHandler from './controllers/employee/AuditLogHandler.js';
 import ViewFeedback from './controllers/employee/ViewFeedbackHandler.js';
 import ViewPaymentsHandler from './controllers/employee/ViewPaymentHandler.js';
 import ViewCentersHandler from './controllers/employee/ViewCentersHandler.js';
-import SubmitFeedback from './controllers/user/SubmitFeedback.js';
 //create the app
 var app = express();
 
@@ -78,7 +77,6 @@ AuditLogHandler(app,db);
 ViewFeedback(app,db);
 ViewPaymentsHandler(app,db);
 ViewCentersHandler(app,db);
-SubmitFeedback(app,db);
 //listening the port
 app.listen(3001, (err) => {
   if (err) throw err;
