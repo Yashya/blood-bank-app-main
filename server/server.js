@@ -42,11 +42,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 var db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "12345678",
-  database: "bbms1",
-
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQL_DATABASE
 });
 
 db.connect(function (err) {
@@ -78,9 +77,9 @@ ViewFeedback(app,db);
 ViewPaymentsHandler(app,db);
 ViewCentersHandler(app,db);
 //listening the port
-app.listen(3001, (err) => {
-  if (err) throw err;
-  else console.log("listening to port : 3001");
+const PORT = process.env.MYSQLPORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 app.get('/getUserId', (req, res) => {
